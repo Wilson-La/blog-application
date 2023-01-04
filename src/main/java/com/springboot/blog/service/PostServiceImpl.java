@@ -57,6 +57,12 @@ public class PostServiceImpl implements PostService{
         return mapToDTO(post);
     }
 
+    @Override
+    public void deletePostById(long id) {
+        Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
+        postRepository.delete(post);
+    }
+
     //convert Entity to DTO
     private PostDto mapToDTO(Post post){
         PostDto postDto = new PostDto();
