@@ -23,4 +23,9 @@ public class CategoryController {
         CategoryDto savedCategory = categoryService.addCategory(categoryDto);
         return new ResponseEntity<>(savedCategory, HttpStatus.CREATED);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<CategoryDto> getCategory(@PathVariable("id") Long categoryId){
+        CategoryDto categoryDto = categoryService.getCategory(categoryId);
+        return ResponseEntity.ok(categoryDto);
+    }
 }
