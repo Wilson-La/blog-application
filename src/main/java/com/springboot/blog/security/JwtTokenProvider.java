@@ -30,7 +30,7 @@ public class JwtTokenProvider {
 
         String token = Jwts.builder()
                 .setSubject(username)
-                .setIssuedAt(currentDate)
+                .setIssuedAt(new Date())
                 .setExpiration(expireDate)
                 .signWith(key())
                 .compact();
@@ -48,7 +48,7 @@ public class JwtTokenProvider {
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(key())
                 .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody();
         String username =  claims.getSubject();
         return username;
